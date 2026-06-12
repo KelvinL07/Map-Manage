@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chengdu - Jiuzhaigou - Chongqing Trip Map</title>
+    
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar for Itinerary -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <div>
+                    <h1>Trip Itinerary</h1>
+                    <p id="trip-dates-display">28 Nov - 6 Dec 2026</p>
+                </div>
+                <div class="header-actions">
+                    <button id="theme-toggle-btn" class="icon-btn" title="Toggle Light/Dark Mode">☀️</button>
+                    <button id="add-loc-btn" class="add-btn">+ Add</button>
+                </div>
+            </div>
+            <div class="itinerary-list" id="itinerary-list">
+                <!-- Itinerary items will be dynamically injected here by JS -->
+            </div>
+        </div>
+
+        <!-- Main Map Area -->
+        <div class="map-container">
+            <div id="pick-mode-banner" class="hidden">
+                Click on the map to set the coordinates for the new location. <button id="cancel-pick-btn">Cancel</button>
+            </div>
+            <div id="map"></div>
+        </div>
+    </div>
+
+    <!-- Modal for Adding Location -->
+    <div id="add-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Add New Location</h2>
+            <div class="form-group">
+                <label>Day (e.g., Day 8)</label>
+                <input type="text" id="input-day" placeholder="Day 8">
+            </div>
+            <div class="form-group">
+                <label>Date</label>
+                <input type="date" id="input-date">
+            </div>
+            <div class="form-group">
+                <label>Time</label>
+                <input type="text" id="input-time" placeholder="09:00">
+            </div>
+            <div class="form-group">
+                <label>Title</label>
+                <input type="text" id="input-title" placeholder="Location Title">
+            </div>
+            <div class="form-group">
+                <label>Category</label>
+                <select id="input-category">
+                    <option value="Sightseeing">Sightseeing</option>
+                    <option value="Food">Food</option>
+                    <option value="Hotel">Hotel</option>
+                    <option value="Transport">Transport</option>
+                    <option value="Optional">Optional</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <input type="text" id="input-desc" placeholder="Brief description">
+            </div>
+            <div class="form-group coords-group">
+                <label>Search Address / Location</label>
+                <div class="search-wrap" style="margin-bottom: 10px; position: relative;">
+                    <input type="text" id="osm-search-input" placeholder="Type to search (OpenStreetMap)..." autocomplete="off">
+                    <div id="osm-search-results" class="search-results hidden"></div>
+                </div>
+                <label>Or Coordinates</label>
+                <div class="coords-input-wrap">
+                    <input type="text" id="input-coords" readonly placeholder="Search above or Click 'Pick on Map'">
+                    <button id="pick-map-btn" type="button">Pick on Map</button>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button id="cancel-add-btn" class="btn-secondary">Cancel</button>
+                <button id="save-loc-btn" class="btn-primary">Save Location</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    
+    <!-- SortableJS -->
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</html>
